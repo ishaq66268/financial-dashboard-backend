@@ -6,6 +6,11 @@ from .utils import upsert_entry, delete_by_date, get_entries
 
 app = FastAPI(title="Financial Dashboard API with MongoDB")
 
+# ✅ Root endpoint
+@app.get("/")
+async def root():
+    return {"message": "Financial Dashboard Backend is running 🚀"}
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
