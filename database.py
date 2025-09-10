@@ -7,3 +7,7 @@ DB_NAME = os.getenv("DB_NAME", "financial_dashboard")
 client = AsyncIOMotorClient(MONGO_URL)
 db = client[DB_NAME]
 entries_collection = db["entries"]
+
+# function to return DB instance
+def get_db():
+    return db
