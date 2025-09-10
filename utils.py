@@ -1,6 +1,6 @@
 from datetime import date
-from backend.database import entries_collection
-from backend.schemas import EntryIn, EntryOut
+from database import entries_collection
+from schemas import EntryIn, EntryOut
 
 def doc_to_entryout(doc) -> EntryOut:
     """Convert MongoDB doc into EntryOut"""
@@ -26,7 +26,6 @@ async def upsert_entry(payload: EntryIn) -> EntryOut:
         return_document=True
     )
 
-    # if Mongo doesn't return doc on upsert, fetch it manually
     if not result:
         result = await entries_collection.find_one({"date": str(payload.date)})
 

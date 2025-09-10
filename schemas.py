@@ -1,20 +1,13 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from datetime import date
-from typing import List
+from typing import Optional
 
 class EntryIn(BaseModel):
     date: date
-    counter_amount: float = Field(ge=0)
-    material_cost: float = Field(ge=0)
-    savings: float = Field(ge=0)
+    counter_amount: float
+    material_cost: float
+    savings: float
 
 class EntryOut(EntryIn):
-    id: str  # MongoDB _id converted to string
+    id: str
     profit: float
-
-class Metrics(BaseModel):
-    total_counter_amount: float
-    total_material_cost: float
-    total_savings: float
-    total_profit: float
-    entries: List[EntryOut]
